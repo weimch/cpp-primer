@@ -1,9 +1,16 @@
-#include <iostream>
-#include <vector>
-#include "Screen.h"
+#include <string>
+
+class Sales_data {
+ public:
+  explicit Sales_data(std::string d) : data(d) {}
+ private:
+  std::string data;
+};
+
 
 int main() {
-  Screen::pos i = 4, j = 5;
-  Screen screen = {i, j, ' '};
-  std::cout << screen.get() << std::endl;
+  std::string null_isbn("999");
+  Sales_data item1(null_isbn);
+  Sales_data item2("999");
+  return 0;
 }

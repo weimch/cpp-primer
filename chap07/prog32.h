@@ -1,10 +1,21 @@
 #pragma once
 
+#include <vector>
 #include <string>
 
+class Screen;
+
+class Window_mgr {
+ public:
+  using ScreenIndex = std::vector<Screen>::size_type;
+  void clear(ScreenIndex);
+ private:
+  std::vector<Screen> screens;
+};
+
 class Screen {
-  friend class Window_mgr;
-  // friend void Window_mgr::clear(ScreenIndex);
+  friend void Window_mgr::clear(ScreenIndex);
+
  public:
   using pos = std::string::size_type;
   Screen() = default;
@@ -59,4 +70,10 @@ inline Screen &Screen::set(char c) {
 inline Screen &Screen::set(pos r, pos col, char ch) {
   contents[r*width+col] = ch;
   return *this;
+}
+
+
+void Window_mgr::clear(ScreenIndex i) {
+  Screen &s = screens[i];
+  s.contents = std::string(s.height*s.width, ' ');
 }

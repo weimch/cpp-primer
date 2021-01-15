@@ -3,8 +3,6 @@
 #include <string>
 
 class Screen {
-  friend class Window_mgr;
-  // friend void Window_mgr::clear(ScreenIndex);
  public:
   using pos = std::string::size_type;
   Screen() = default;
